@@ -9,4 +9,5 @@ add_executable(set_game
     rules.cpp
     board.cpp
     game.cpp
+    cli.cpp
 )

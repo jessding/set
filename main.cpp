@@ -1,3 +1,10 @@
+#include "game.h"
+#include "cli.h"
+
+using namespace setgame;
+
 int main() {
-    return 0;
+    Game game;
+    CLI cli;
+    cli.printBoard(game.board());
 }

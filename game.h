@@ -8,7 +8,8 @@ namespace setgame {
 class Game {
     public:
     Game();
-    
+    const Board& board() const { return board_; }
+
     private:
     Board board_;
     std::vector<Card> deck_;

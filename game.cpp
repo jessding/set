@@ -23,7 +23,7 @@ namespace setgame {
             }
         }
     }
-
+  
     void Game::shuffleDeck() {
         std::random_device rg;
         std::mt19937 generator(rg());
