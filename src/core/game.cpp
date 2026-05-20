@@ -1,14 +1,14 @@
-#include "game.h"
+#include "core/game.h"
 
 #include <algorithm>
 #include <random>
 
-namespace setgame {
+namespace setgame::core {
 
     Game::Game() {
         initializeDeck();
         shuffleDeck();
-        setupBoard();
+        refillBoard();
     };
 
     void Game::initializeDeck() {
@@ -30,16 +30,8 @@ namespace setgame {
         std::shuffle(deck_.begin(), deck_.end(), generator);
     }
 
-    void Game::setupBoard() {
-        for (int c = 0; c < 12; c++) {
-            dealCard();
-        }
-        while (hasNoSet()) {
-            dealCard();
-        }
-    }
-
     void Game::dealCard() {
+        if (deck_.empty()) return;
         board_.add(deck_.back());
         deck_.pop_back();
     }
@@ -48,4 +40,17 @@ namespace setgame {
         return board_.findAllSets().empty();
     }
 
-} // namespace setgame
+    void Game::removeSelectedCards(const std::vector<int>& indices) {
+        board_.removeIndices(indices);
+    }
+
+    void Game::refillBoard() {
+        while (board_.cards().size() < 12 && !deck_.empty()) {
+            dealCard();
+        }
+        while (hasNoSet() && !deck_.empty()) {
+            dealCard();
+        }
+    }
+
+} // namespace setgame::core

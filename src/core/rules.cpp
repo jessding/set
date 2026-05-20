@@ -1,6 +1,6 @@
-#include "rules.h"
+#include "core/rules.h"
 
-namespace setgame {
+namespace setgame::core {
 
 bool isValidSet(const Card& x, const Card& y, const Card& z) {
     for (int i = 0; i < 4; i++) {
@@ -19,4 +19,4 @@ Card getThirdCard(const Card& x, const Card& y) {
     return z;
 }
 
-} // namespace setgame
+} // namespace setgame::core

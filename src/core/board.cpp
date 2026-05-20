@@ -1,6 +1,7 @@
-#include "board.h"
+#include "core/board.h"
+#include <algorithm>
 
-namespace setgame {
+namespace setgame::core {
 
 void Board::add(const Card& c) {
     cards_.push_back(c);
@@ -27,4 +28,12 @@ std::vector<Set> Board::findAllSets() const {
     return result;
 }
 
-} // namespace setgame
+void Board::removeIndices(const std::vector<int>& indices) {
+    std::vector<int> sorted = indices;
+    std::sort(sorted.rbegin(), sorted.rend());
+    for (int index : sorted) {
+        cards_.erase(cards_.begin() + index);
+    }
+}
+
+} // namespace setgame::core

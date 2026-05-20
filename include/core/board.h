@@ -1,9 +1,9 @@
 #pragma once
 
 #include <vector>
-#include "rules.h"
+#include "core/rules.h"
 
-namespace setgame {
+namespace setgame::core {
 
 class Board {
     public:
@@ -11,9 +11,10 @@ class Board {
     bool contains(const Card& c) const;
     std::vector<Set> findAllSets() const;
     const std::vector<Card>& cards() const { return cards_; }
+    void removeIndices(const std::vector<int>& indices);
 
     private:
     std::vector<Card> cards_;
 };
 
-} // namespace setgame
+} // namespace setgame::core
