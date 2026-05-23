@@ -23,8 +23,8 @@ class SDLRenderer {
     static constexpr int CARD_WIDTH  = 220;
     static constexpr int CARD_HEIGHT = 120;
 
-    static constexpr int CARD_SPACING_X = 40;
-    static constexpr int CARD_SPACING_Y = 25;
+    static constexpr int CARD_SPACING_X = 30;
+    static constexpr int CARD_SPACING_Y = 20;
 
     static constexpr Uint32 ANIMATION_DURATION_MS = 300;
 
