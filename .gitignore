@@ -1,3 +1,6 @@
 .vscode/
 build/
 .DS_Store/
+
+proofs/lake-packages/
+proofs/.lake/
