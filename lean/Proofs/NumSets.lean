@@ -33,5 +33,6 @@ def allSetsProduct : Finset (Card × Card × Card) :=
       else ∅
 
 set_option maxRecDepth 1000000
+set_option maxHeartbeats 1000000
 
 theorem card_sets_product : (allSetsProduct).card = 1080 := by decide
