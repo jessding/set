@@ -4,7 +4,6 @@
 #include <random>
 
 namespace setgame::core {
-
     Game::Game() {
         initializeDeck();
         shuffleDeck();
@@ -23,7 +22,7 @@ namespace setgame::core {
             }
         }
     }
-  
+
     void Game::shuffleDeck() {
         std::random_device rg;
         std::mt19937 generator(rg());
@@ -40,7 +39,7 @@ namespace setgame::core {
         return board_.findAllSets().empty();
     }
 
-    void Game::removeSelectedCards(const std::vector<int>& indices) {
+    void Game::removeSelectedCards(const std::vector<int> &indices) {
         board_.removeIndices(indices);
     }
 
@@ -48,9 +47,10 @@ namespace setgame::core {
         while (board_.cards().size() < 12 && !deck_.empty()) {
             dealCard();
         }
-        while (hasNoSet() && !deck_.empty()) {
+        while (hasNoSet() && deck_.size() >= 3) {
+            dealCard();
+            dealCard();
             dealCard();
         }
     }
-
 } // namespace setgame::core

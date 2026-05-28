@@ -10,7 +10,7 @@ int main() {
         setgame::core::Game game;
         setgame::ui::SDLRenderer renderer;
         renderer.run(game);
-    } catch (const std::exception& e) {
+    } catch (const std::exception &e) {
         std::cerr << "Fatal error: " << e.what() << "\n";
         return 1;
     }
