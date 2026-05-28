@@ -57,22 +57,20 @@ SDLRenderer::SDLRenderer() {
         throw std::runtime_error(SDL_GetError());
     }
 
-    SDL_SetHint(SDL_HINT_RENDER_DRIVER, "opengl");
-
     renderer_ = SDL_CreateRenderer(
         window_,
         -1,
         SDL_RENDERER_ACCELERATED
     );
 
+    if (!renderer_) {
+        throw std::runtime_error(SDL_GetError());
+    }
+
     SDL_RendererInfo info;
     SDL_GetRendererInfo(renderer_, &info);
 
     SDL_Log("Renderer: %s", info.name);
-
-    if (!renderer_) {
-        throw std::runtime_error(SDL_GetError());
-    }
 
     std::fill(
         &textures_[0][0],
@@ -123,39 +121,18 @@ void SDLRenderer::loadTextures() {
             return;
         }
 
-        SDL_Surface* converted =
-            SDL_ConvertSurfaceFormat(
-                surface,
-                SDL_PIXELFORMAT_RGBA32,
-                0
-            );
+        tex = SDL_CreateTextureFromSurface(
+            renderer_,
+            surface
+        );
 
         SDL_FreeSurface(surface);
 
-        if (!converted) {
-
-            SDL_Log(
-                "ConvertSurfaceFormat failed: %s",
-                SDL_GetError()
-            );
-
-            return;
-        }
-
-        tex = SDL_CreateTextureFromSurface(
-            renderer_,
-            converted
-        );
-
-        SDL_FreeSurface(converted);
-
         if (!tex) {
-
             SDL_Log(
                 "CreateTextureFromSurface failed: %s",
                 SDL_GetError()
             );
-
             return;
         }
 
@@ -542,18 +519,11 @@ void SDLRenderer::renderCard(
         );
 
         SDL_RenderCopy(
-            renderer_,
-            texture,
-            nullptr,
-            &dst
-        );
-
-        SDL_SetTextureColorMod(
-            texture,
-            255,
-            255,
-            255
-        );
+        renderer_,
+        texture,
+        nullptr,
+        &dst
+    );
     }
 }
 
