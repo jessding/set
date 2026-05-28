@@ -23,3 +23,6 @@ target_link_libraries(set_game PRIVATE
     SDL2_ttf::SDL2_ttf
     SDL2_image::SDL2_image
 )
+
+file(COPY assets
+     DESTINATION ${CMAKE_BINARY_DIR})
