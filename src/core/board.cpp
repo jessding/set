@@ -6,6 +6,10 @@ namespace setgame::core {
         cards_.push_back(c);
     }
 
+    void Board::replace(int index, const Card &c) {
+        cards_.at(index) = c;
+    }
+
     bool Board::contains(const Card &c) const {
         return std::find(cards_.begin(), cards_.end(), c) != cards_.end();
     }

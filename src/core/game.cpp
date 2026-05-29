@@ -1,6 +1,7 @@
 #include "core/game.h"
 
 #include <algorithm>
+#include <print>
 #include <random>
 
 namespace setgame::core {
@@ -39,8 +40,16 @@ namespace setgame::core {
         return board_.findAllSets().empty();
     }
 
-    void Game::removeSelectedCards(const std::vector<int> &indices) {
-        board_.removeIndices(indices);
+    void Game::replaceSelectedCards(const std::vector<int> &indices) {
+        if (deck_.empty()) return;
+        if (board_.cards().size() > 12) board_.removeIndices(indices);
+        else {
+            for (const int i: indices) {
+                std::print("selected index {}\n", i);
+                board_.replace(i, deck_.back());
+                deck_.pop_back();
+            }
+        }
     }
 
     void Game::refillBoard() {
