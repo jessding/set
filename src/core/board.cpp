@@ -21,7 +21,7 @@ namespace setgame::core {
 
         for (int i = 0; i < boardSize; i++) {
             for (int j = i + 1; j < boardSize; j++) {
-                const Card &a = cards_[i], b = cards_[j];
+                const Card &a = cards_[i], &b = cards_[j];
 
                 Card c = getThirdCard(a, b);
 

@@ -42,10 +42,9 @@ namespace setgame::core {
 
     void Game::replaceSelectedCards(const std::vector<int> &indices) {
         if (deck_.empty()) return;
-        if (board_.cards().size() > 12) board_.removeIndices(indices);
+        if (board_.size() > 12) board_.removeIndices(indices);
         else {
             for (const int i: indices) {
-                std::print("selected index {}\n", i);
                 board_.replace(i, deck_.back());
                 deck_.pop_back();
             }
@@ -53,7 +52,7 @@ namespace setgame::core {
     }
 
     void Game::refillBoard() {
-        while (board_.cards().size() < 12 && !deck_.empty()) {
+        while (board_.size() < 12 && !deck_.empty()) {
             dealCard();
         }
         while (hasNoSet() && deck_.size() >= 3) {

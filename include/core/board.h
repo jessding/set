@@ -15,6 +15,8 @@ namespace setgame::core {
         std::vector<Set> findAllSets() const;
 
         const std::vector<Card> &cards() const { return cards_; }
+        
+        int size() const { return cards_.size(); }
 
         void removeIndices(const std::vector<int> &indices);
 
